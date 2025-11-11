@@ -1,6 +1,8 @@
-# zephyr-stm32l476rg
+# zephyr-stm32
 
-Sandbox space for Zephyr firmware experiments on the STM32 Nucleo L476RG. The sample currently ships with a modified `blinky` (`SLEEP_TIME_MS = 100 ms`) under `app/`.
+Sandbox space for Zephyr firmware experiments on the STM32 Nucleo boards.
+
+Currently tested on STM32L476RG. The sample currently ships with a modified `blinky` (`SLEEP_TIME_MS = 100 ms`) under `app/`.
 
 ## Prerequisites
 
@@ -9,7 +11,7 @@ Sandbox space for Zephyr firmware experiments on the STM32 Nucleo L476RG. The sa
    ~/Zephyr/
    ├─ zephyr                 # Zephyr source tree from west
    ├─ modules, bootloader…   # other west-managed projects
-   └─ zephyr-stm32l476rg     # this repository (cloned manually)
+   └─ zephyr-stm32           # this repository (cloned manually)
    ```
 2. Create (or reuse) a Python virtual environment inside `~/Zephyr` and install Zephyr’s tool requirements:
    ```bash
@@ -21,17 +23,19 @@ Sandbox space for Zephyr firmware experiments on the STM32 Nucleo L476RG. The sa
 3. Clone this repository next to the Zephyr tree:
    ```bash
    cd ~/Zephyr
-   git clone git@github.com:<your-org>/zephyr-stm32l476rg.git
+   git clone git@github.com:<your-org>/zephyr-stm32.git
    ```
 
 > The repository does **not** duplicate the Zephyr source; builds consume headers/modules directly from `~/Zephyr/zephyr`.
 
 ## Building and flashing
 
+Example for a NUCLEO STM32L$76RG board.
+
 ```bash
 cd ~/Zephyr
 source zephyr/zephyr-env.sh          # or: source .venv/bin/activate
-cd zephyr-stm32l476rg
+cd zephyr-stm32
 west build -p auto -b nucleo_l476rg app -d build
 west flash -d build
 ```
@@ -81,7 +85,7 @@ west build -p auto -b nucleo_l476rg uart_demo -d build-uart
      "configurations": [
        {
          "name": "Linux",
-         "compileCommands": "${workspaceFolder}/zephyr-stm32l476rg/build/compile_commands.json"
+         "compileCommands": "${workspaceFolder}/zephyr-stm32/build/compile_commands.json"
        }
      ],
      "version": 4
